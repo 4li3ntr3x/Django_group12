@@ -1,2 +1,26 @@
 {% extends "base.html" %}
+
+
 {% block titulo %}Quienes Somos{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+    <ul>
+
+        <h2>Integrantes del Grupo al dia {{fecha}}</h2>
+        <br>
+    
+
+        {% for nombre in nombres %}
+
+        <li>
+            <p><b>{{nombre}}</b></p> 
+        </li>
+
+        {% endfor %}
+
+    </ul>
+
+{% endblock contenido %}
