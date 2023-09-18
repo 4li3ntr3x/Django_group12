@@ -28,15 +28,15 @@
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/">Blog</a>
+                            <a class="nav-link" href="{% url 'index' %}">Blog</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/somos">Quienes Somos</a>
+                            <a class="nav-link" href="{% url 'somos' %}">Quienes Somos</a>
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" href="/nosotros">Trabaja con Nosotros</a>
+                            <a class="nav-link" href="{% url 'nosotros' %}">Trabaja con Nosotros</a>
                         </li>
 
                     </ul>
@@ -120,7 +120,7 @@
                             Links Utiles
                         </h6>
                         <p>
-                            <a href="#!" class="text-reset">Quienes Somos</a>
+                            <a href="{% url 'somos' %}" class="text-reset">Quienes Somos</a>
                         </p>
                         <p>
                             <a href="#!" class="text-reset">Amigos</a>

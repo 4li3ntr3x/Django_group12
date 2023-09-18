@@ -21,5 +21,9 @@ def quienes_somos(request):
     }
     return render(request, 'quienesSomos.html', context)
 
-def nosotros(request):
-    return render(request, 'trabajaConNosotros.html')
+def nosotros(request, nombre=''):
+    
+    context = {
+        'nombre_usuario' : nombre,
+    }
+    return render(request, 'trabajaConNosotros.html', context)
