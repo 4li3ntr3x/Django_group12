@@ -16,7 +16,7 @@
         {% for nombre in nombres %}
 
         <li>
-            <p><b>{{nombre}}</b></p> 
+            <a class="listaIntegrantes" href="{% url 'perfil' nombre %}"><b>{{nombre}}</b></p> 
         </li>
 
         {% endfor %}
