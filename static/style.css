@@ -1,0 +1,33 @@
+.listaIntegrantes
+{
+    cursor:pointer;
+    color: black;
+}
+.listaIntegrantes:hover
+{
+    color: cadetblue;
+
+}
+.blogPost
+{
+    background-color: rgb(236, 234, 244);
+    margin: 2px 5px 2px 5px ;
+    padding: 0px 5px 2px 5px;
+    border-radius: 5px;
+}
+.blogContainer
+{
+    padding: 2px 5px 5px 5px;
+}
+.blogFecha
+{
+    float:right;
+    font-size: smaller;
+}
+.blogFirma{
+    text-align:right;
+    font-size:larger;
+    font-weight: bold;
+    color: gray;
+
+}
