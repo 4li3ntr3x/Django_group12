@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from datetime import date
+from .forms import PostForm
 
 
 # Create your views here.
@@ -66,3 +67,18 @@ def nosotros(request, nombre=''):
 def perfil(request, nombre):
     context = {'nombre' : nombre}
     return render(request, 'perfil.html', context)
+
+
+def crear_post(request):
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('index')  # Redirige a la página de inicio u otra página después de crear la publicación
+    else:
+        form = PostForm()
+
+    context = {
+        'form': form,
+    }
+    return render(request, 'crear_post.html', context)

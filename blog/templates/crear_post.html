@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+
+{% block titulo %}Crear Post{% endblock titulo %}
+
+
+{% block contenido %}
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crear un nuevo post</title>
+</head>
+<body>
+    <h1>Crear un nuevo post</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="titulo">Título:</label><br>
+        <input type="text" id="titulo" name="titulo" required><br><br>
+        
+        <label for="autor">Autor:</label><br>
+        <input type="text" id="autor" name="autor" required><br><br>
+        
+        <label for="contenido">Contenido:</label><br>
+        <textarea id="contenido" name="contenido" rows="10" required></textarea><br><br>
+        
+        <input type="submit" value="Publicar">
+    </form>
+</body>
+</html>
+
+{% endblock contenido %}
