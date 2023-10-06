@@ -1,12 +1,10 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import date
 from .forms import PostForm
+from datetime import date
+from datetime import datetime
 
-
-# Create your views here.
-
-def index(request):
-    blogs = [
+blogs = [
     {'titulo':'La Pesca durante el més de junio.',
     'fecha':'20 de Junio del 2023', 
     'autor':'Marcelo', 
@@ -36,8 +34,11 @@ Condiciones Meteorológicas Agradables: La primavera suele ofrecer condiciones m
 
 Énfasis en la Observación: La primavera también es un momento excelente para la observación de la fauna. Los cazadores pueden disfrutar de la belleza de la naturaleza mientras buscan su presa. Observar la vida silvestre en su entorno natural es una experiencia enriquecedora que va más allá de la caza en sí.
 
-En conclusión, la caza en primavera ofrece una oportunidad única para conectarse con la naturaleza, experimentar la emoción de la caza y ser testigo de la renovación de la vida silvestre. Si eres un apasionado cazador, no te pierdas la oportunidad de disfrutar de todo lo que la primavera tiene para ofrecer en tus aventuras cinegéticas. ¡Buena caza en primavera!'''}
-     ]
+En conclusión, la caza en primavera ofrece una oportunidad única para conectarse con la naturaleza, experimentar la emoción de la caza y ser testigo de la renovación de la vida silvestre. Si eres un apasionado cazador, no te pierdas la oportunidad de disfrutar de todo lo que la primavera tiene para ofrecer en tus aventuras cinegéticas. ¡Buena caza en primavera!'''}]
+# Create your views here.
+
+def index(request):
+
     context = {
             'blogs': blogs
         }
@@ -73,7 +74,9 @@ def crear_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-            form.save()
+            registro = form.cleaned_data
+            registro['fecha'] = convertirFecha(date.today())
+            blogs.append(registro)
             return redirect('index')  # Redirige a la página de inicio u otra página después de crear la publicación
     else:
         form = PostForm()
@@ -82,3 +85,6 @@ def crear_post(request):
         'form': form,
     }
     return render(request, 'crear_post.html', context)
+def convertirFecha(date):
+    meses = ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviemrbe", "Diciembre")
+    return "{} de {} del {}".format(date.day, meses[date.month - 1], date.year)
