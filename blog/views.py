@@ -37,6 +37,13 @@ Condiciones Meteorológicas Agradables: La primavera suele ofrecer condiciones m
 En conclusión, la caza en primavera ofrece una oportunidad única para conectarse con la naturaleza, experimentar la emoción de la caza y ser testigo de la renovación de la vida silvestre. Si eres un apasionado cazador, no te pierdas la oportunidad de disfrutar de todo lo que la primavera tiene para ofrecer en tus aventuras cinegéticas. ¡Buena caza en primavera!'''}]
 # Create your views here.
 
+def home(request):
+
+    context = {
+            'home': home
+        }
+    return render(request, 'homepage.html', context)
+
 def index(request):
 
     context = {
@@ -86,5 +93,5 @@ def crear_post(request):
     }
     return render(request, 'crear_post.html', context)
 def convertirFecha(date):
-    meses = ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviemrbe", "Diciembre")
+    meses = ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
     return "{} de {} del {}".format(date.day, meses[date.month - 1], date.year)
