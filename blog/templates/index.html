@@ -1,17 +1,16 @@
 {% extends "base.html" %}
-{% block titulo %}Big Fish Blog{% endblock titulo %}
+
 {% block contenido %}
-    <div class=blogContainer>
-    {% for b in blogs %}
-        <div class=blogPost>
-            <p class=blogFecha>{{b.fecha}}</p>
-            <H2>{{b.titulo}}</H2>
-            <article>
-                {{b.contenido}}
-                <p class=blogFirma> {{b.autor}}</p>
-            </article>
-        </div>
-        <hr>
+  <h1>Lista de Posts</h1>
+  <div class="posts-container">
+    {% for post in posts %}
+      <div class="post">
+        <h2>{{ post.titulo }}</h2>
+        <p>Autor: {{ post.autor }}</p>
+        <p>Contenido: {{ post.contenido }}</p>
+        <p>Fecha: {{ post.fecha }}</p>
+        <button class="read-more-button">Leer más</button>
+      </div>
     {% endfor %}
-    </div>
-{% endblock contenido %}
+  </div>
+{% endblock %}
