@@ -47,7 +47,7 @@
 /* Estilo de Posts y limita la altura máxima de los posts a 200px y oculta el exceso */
 .post {
   border: 2px solid #ccc;
-  background-color: #fff;
+  background-color: rgb(77, 147, 78);
   margin: 10px;
   padding: 10px;
   box-shadow: 5px 5px 5px #888;
@@ -59,7 +59,20 @@
   border-radius: 8px;
   text-align: center;
 }
-
+.postc {
+  border: 2px solid #ccc;
+  background-color: rgb(138, 47, 47);
+  margin: 10px;
+  padding: 10px;
+  box-shadow: 5px 5px 5px #888;
+  width: calc(100% - 20px);
+  box-sizing: border-box;
+  max-height: 200px;
+  overflow: hidden;
+  transition: all 0.25s;
+  border-radius: 8px;
+  text-align: center;
+}
 /* Estilo para el botón "Leer más" */
 .read-more-button {
   display: none; /* Inicialmente oculto */

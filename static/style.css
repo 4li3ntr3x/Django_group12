@@ -47,14 +47,22 @@
   /* Estilo para cada post */
   .post {
     border: 2px solid #ccc;
-    background-color: #fff;
+    background-color: rgb(57, 119, 130);
     margin: 10px;
     padding: 10px;
     box-shadow: 5px 5px 5px #888;
     width: calc(33.33% - 20px); /* Asegura que haya tres columnas en una fila */
     box-sizing: border-box;
   }
-  
+  .postc {
+    border: 2px solid #ccc;
+    background-color: #fff;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #888;
+    width: calc(50% - 20px); /* Asegura que haya tres columnas en una fila */
+    box-sizing: border-box;
+  }
   /* Otras propiedades de estilo, como fuentes y colores, según tus preferencias */
   .post h2 {
     font-size: 1.5em;

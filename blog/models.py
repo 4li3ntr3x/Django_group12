@@ -5,3 +5,6 @@ class Post(models.Model):
     autor = models.CharField(max_length=50)
     contenido = models.TextField()
     fecha = models.DateField(auto_now_add=True)
+    
+    def obtener_ultimos_x(cantidad):
+        return Post.objects.order_by("-fecha", "-id").all()[:cantidad]
