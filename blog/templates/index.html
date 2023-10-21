@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block contenido %}
-  <h1>Lista de Posts</h1>
+
+  <h1>Lista de Posts - Comparte tus conocimientos con nosotros a traves de notas 😃</h1>
   <div class="posts-container">
     {% for post in posts %}
       <div class="post">
-        <h2>{{ post.titulo }}</h2>
+        <h2><a href="{% url 'post_detail' post.id %}">{{ post.titulo }}</a></h2>
         <p>Autor: {{ post.autor }}</p>
-        <p>Contenido: {{ post.contenido }}</p>
+        <p class="post-content">{{ post.contenido|truncatewords:50 }}</p>
         <p>Fecha: {{ post.fecha }}</p>
         <button class="read-more-button">Leer más</button>
       </div>

@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block titulo %}
+  Detalles
+{% endblock %}
+
+{% block contenido %}
+<style>
+  body {
+    background-image: url("{% static 'images/1.jpg' %}");
+    background-size: cover;
+    background-position: center;
+  }
+  .post-detail {
+    border: 2px solid #ccc;
+    background-color: #ffff99;
+    margin: 10px;
+    padding: 10px;
+    box-shadow: 5px 5px 5px #888;
+    max-height: none;
+    overflow: visible;
+    transition: none;
+    border-radius: 8px;
+    text-align: center;
+  }
+</style>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <!-- Metadatos y enlaces a CSS -->
+</head>
+<body>
+    <div class="post-detail">
+        <h2>{{ post.titulo }}</h2>
+        <p>{{ post.contenido | safe }}</p>
+      
+        <!-- Formulario de comentarios -->
+        <hr>
+        <h1>Comentarios</h1>
+        <br /><br />
+        <form method="post">
+            {% csrf_token %}
+            {{ comment_form.as_p }}
+            <input type="submit" value="Comentar!" class="btn btn-outline-success">
+        </form>
+
+        <!-- Resto del código de comentarios -->
+        <!-- ... -->
+    </div>
+</body>
+</html>
+
+{% endblock %}

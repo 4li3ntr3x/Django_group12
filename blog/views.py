@@ -2,8 +2,10 @@ from django.shortcuts import render, redirect
 from datetime import date
 from .models import Post
 from .forms import PostForm
+from .forms import CommentForm
 from datetime import date
 from datetime import datetime
+from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
@@ -71,8 +73,19 @@ def crear_post(request):
     }
     return render(request, 'crear_post.html', context)
 
-
-
 def convertirFecha(date):
     meses = ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
     return "{} de {} del {}".format(date.day, meses[date.month - 1], date.year)
+
+
+def post_detail(request, post_id):
+    post = get_object_or_404(Post, pk=post_id)
+    comment_form = CommentForm()
+
+    context = {
+        'post': post,
+        'comment_form': comment_form,
+    }
+
+    return render(request, 'post_detail.html', context)
+
