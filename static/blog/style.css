@@ -43,6 +43,28 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.comentario_list
+{
+
+}
+.comentario
+{
+  background-color:khaki;
+  color: gray;
+  text-align: left;
+  padding: 5px 10px 20px;
+  margin: 20px;
+}
+.comentario_autor{
+  font-size: 1.25rem;
+  color: white;
+}
+.comentario_fecha
+{
+  float:right;
+  font-size: smaller;
+}
+
 
 /* Estilo de Posts y limita la altura máxima de los posts a 200px y oculta el exceso */
 .post {
