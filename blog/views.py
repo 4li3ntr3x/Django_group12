@@ -3,6 +3,7 @@ from datetime import date
 from .models import Post
 from .forms import PostForm
 from .forms import CommentForm
+from .models import Comentario
 from datetime import date
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404
@@ -79,13 +80,27 @@ def convertirFecha(date):
 
 
 def post_detail(request, post_id):
+
+
     post = get_object_or_404(Post, pk=post_id)
+
+    if request.method == 'POST':
+        comentario = CommentForm(request.POST)
+        if comentario.is_valid():
+            comentario_modelo = comentario.save(commit=False)
+            comentario_modelo.post = post
+            comentario_modelo.save()
+
+    comentarios = post.comentario_set.all()
+    
     comment_form = CommentForm()
 
     context = {
         'post': post,
+        'comentarios': comentarios,
         'comment_form': comment_form,
     }
 
     return render(request, 'post_detail.html', context)
+
 

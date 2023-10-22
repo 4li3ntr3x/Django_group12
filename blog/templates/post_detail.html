@@ -40,12 +40,25 @@
         <!-- Formulario de comentarios -->
         <hr>
         <h1>Comentarios</h1>
-        <br /><br />
+        <div class='comentario_list'>
+          {% for comentario in comentarios %}
+            <div class='comentario'>
+            <p class='comentario_autor'>{{comentario.autor}}</p>
+            {{comentario.contenido}}
+            <p></p>
+            <span class='comentario_fecha'>{{comentario.fecha}}</span>
+            </div>
+            <hr>
+          {% endfor %}
+        </div>
+        <h3>Deja tu comentario:</h3>
         <form method="post">
             {% csrf_token %}
             {{ comment_form.as_p }}
             <input type="submit" value="Comentar!" class="btn btn-outline-success">
         </form>
+        
+
 
         <!-- Resto del código de comentarios -->
         <!-- ... -->
