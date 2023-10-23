@@ -49,15 +49,16 @@
 }
 .comentario
 {
-  background-color:khaki;
-  color: gray;
+  background-color:rgb(169, 231, 190);
+  
+  color: rgb(12, 0, 0);
   text-align: left;
   padding: 5px 10px 20px;
   margin: 20px;
 }
 .comentario_autor{
   font-size: 1.25rem;
-  color: white;
+  color: rgb(8, 0, 0);
 }
 .comentario_fecha
 {
@@ -75,7 +76,7 @@
   padding: 10px;
   box-shadow: 5px 5px 5px #888;
   width: calc(33.33% - 20px);
-  box-sizing: border-box;
+  #box-sizing: border-box;
   max-height: 200px;
   overflow: hidden;
   transition: all 0.25s;

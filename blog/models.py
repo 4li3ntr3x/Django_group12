@@ -11,7 +11,9 @@ class Post(models.Model):
 
 class Comentario(models.Model):
     autor = models.CharField(max_length=50)
-    contenido = models.TextField(max_length=140)
+    email = models.EmailField(max_length=150, verbose_name="Email", null=True)
+    contenido = models.TextField(max_length=300)
     fecha = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
+    
 
