@@ -1,6 +1,7 @@
 // Obtén todos los botones "Leer más"
 var readMoreButtons = document.querySelectorAll('.read-more-button');
 
+if (readMoreButtons){
 // Agrega un evento click a cada botón
 readMoreButtons.forEach(function(button) {
   button.addEventListener('click', function() {
@@ -11,4 +12,4 @@ readMoreButtons.forEach(function(button) {
     post.classList.toggle('expanded');
   });
 });
-
+}

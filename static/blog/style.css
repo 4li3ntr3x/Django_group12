@@ -43,9 +43,14 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.comentario_list
+.etiqueta
 {
-
+  color: rebeccapurple;
+}
+.etiqueta:hover
+{
+  font-weight: bolder;
+  color: purple;
 }
 .comentario
 {
