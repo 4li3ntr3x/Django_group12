@@ -16,6 +16,15 @@
 </head>
 <body>
     <h1>Crear un nuevo post</h1>
+
+    <br><br>
+
+    <div class="col-md-6 mb-md-0 mb-6">
+        {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}" role="alert">
+                    {{message}}
+                </div>
+        {% endfor %}
     
     <form method="post">
         {% csrf_token %}

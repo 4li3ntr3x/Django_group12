@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 from datetime import date
 from .models import Post
 from .forms import PostForm
@@ -63,9 +64,17 @@ def etiquetas(request, etiqueta_id):
     return render(request, 'etiquetas.html', context)
 
 def crear_post(request):
-    if request.method == 'POST':
+
+    if request.method == 'GET':
+            form = PostForm()
+
+
+    elif request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
+
+            messages.success(request, 'Hemos recibido tus datos')
+
             # Crea una instancia del modelo Post con los datos del formulario
             
             nNuevasEtiquetas =  int(request.POST.get('etiquetaNewCount'))
@@ -93,6 +102,7 @@ def crear_post(request):
             )
             nuevo_post.save()  # Guarda el nuevo post en la base de datos
             nuevo_post.etiquetas.set(form.cleaned_data['etiquetas'])
+            form = PostForm()
 
             if nNuevasEtiquetas > 0:
                 for j in range(0, nNuevasEtiquetas):
@@ -100,7 +110,13 @@ def crear_post(request):
                     print(len(nuevasEtiquetas))
                     nuevo_post.etiquetas.add(nuevasEtiquetas[j])
 
-            return redirect('index')  # Redirige a la página de inicio después de crear la publicación
+            #return redirect('index')  # Redirige a la página de inicio después de crear la publicación
+        
+        else:    
+            messages.warning(request, 'Por favor revisa los errores en el formulario')
+
+
+
     else:
         form = PostForm()
 
