@@ -1,11 +1,17 @@
 from django import forms
-from .models import Post, Comentario
+from .models import Post, Comentario, Etiqueta
+class CustomMMCF(forms.ModelMultipleChoiceField):
+    def label_from_instance(self, etiqueta):
+        return "%s" % etiqueta.desc
 
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['titulo', 'autor', 'contenido']
-        
+        fields = ['titulo', 'autor', 'contenido', 'etiquetas']
+    etiquetas = CustomMMCF(
+        queryset=Etiqueta.objects.all(),
+        widget=forms.CheckboxSelectMultiple, required=False)
+    
 
 class CommentForm(forms.ModelForm):
     email = forms.EmailField(label='Correo Electrónico')

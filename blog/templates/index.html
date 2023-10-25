@@ -9,6 +9,9 @@
         <h2><a href="{% url 'post_detail' post.id %}">{{ post.titulo }}</a></h2>
         <p>Autor: {{ post.autor }}</p>
         <p class="post-content">{{ post.contenido|truncatewords:50 }}</p>
+        {% for e in post.etiquetas.all %}
+          <a class='etiqueta' href={% url 'etiquetas' e.id %}>#{{e.desc}}</a>
+        {% endfor %}
         <p>Fecha: {{ post.fecha }}</p>
         <button class="read-more-button">Leer más</button>
       </div>

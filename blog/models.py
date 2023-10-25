@@ -1,11 +1,15 @@
 from django.db import models
 
+class Etiqueta(models.Model):
+    desc = models.CharField(max_length=50)
+
 class Post(models.Model):
     titulo = models.CharField(max_length=100)
     autor = models.CharField(max_length=50)
     contenido = models.TextField()
+    etiquetas = models.ManyToManyField(Etiqueta, blank=True)
     fecha = models.DateField(auto_now_add=True)
-    
+
     def obtener_ultimos_x(cantidad):
         return Post.objects.order_by("-fecha", "-id").all()[:cantidad]
 
@@ -16,4 +20,5 @@ class Comentario(models.Model):
     fecha = models.DateTimeField(auto_now_add=True)
     post = models.ForeignKey('Post', on_delete=models.CASCADE)
     
+
 

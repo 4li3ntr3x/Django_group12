@@ -7,7 +7,7 @@
 {% block contenido %}
 
 
-
+{% load static %}
 
 <!DOCTYPE html>
 <html>
@@ -22,9 +22,19 @@
         <table>
         {{ form.as_table}}
         </table>
+        <div id='addEtiquetaDiv'>
+        <p id='addEtiqueta'>Agregar Etiqueta</p>
+        <p id='newEtiquetasP' hidden>Nuevas Etiquetas</p>
+        <input type=number value=0 id='etiquetaNewCount' name='etiquetaNewCount' readonly  hidden>
+        <input id='addEtiquetaInput' name='desc'>
+        <button class="btn btn-outline-danger" id='addEtiquetaCancel'>Cancelar</button>
+        <input type="submit" id='addEtiquetaSave' value="Guardar" class="btn btn-outline-success">
+        </div>
         <input type="submit" value="Enviar" class="btn btn-outline-success">
     </form>
+    
 </body>
+<script src="{% static 'js/crearPost.js' %}"></script>
 </html>
 
 {% endblock contenido %}

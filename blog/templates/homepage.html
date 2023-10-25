@@ -61,6 +61,9 @@
           <h2>{{ post.titulo }}</h2>
           <p>Autor: {{ post.autor }}</p>
           <p>{{ post.contenido }}</p>
+          {% for e in post.etiquetas.all %}
+          <a class='etiqueta' href={% url 'etiquetas' e.id %}>#{{e.desc}}</a>
+          {% endfor %}
           <p>Fecha: {{ post.fecha }}</p>
           <button class="read-more-button">Leer más</button>
         </div>

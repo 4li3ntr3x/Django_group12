@@ -35,7 +35,12 @@
     <div class="post-detail">
         <h2>{{ post.titulo }}</h2>
         <p>{{ post.contenido | safe }}</p>
-      
+        <p> Etiquetas:
+            {%for e in etiquetas %}
+              {%if forloop.counter > 1 %} - {% endif %}
+              <a class='etiqueta' href={% url 'etiquetas' e.id %}>#{{e.desc}}</a>  
+            {% endfor %}
+        </p>
         <!-- Formulario de comentarios -->
         <hr>
         <h2>Comentarios</h2>
@@ -46,6 +51,7 @@
             {{comentario.contenido}}
             <p></p>
             <span class='comentario_fecha'>{{comentario.fecha}}</span>
+            
             </div>
             <hr>
           {% endfor %}
