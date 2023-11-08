@@ -1,3 +1,8 @@
 from django.contrib import admin
+from blog.models import Etiqueta
+from blog.models import Post
+from blog.models import Comentario
 
-# Register your models here.
+admin.site.register(Etiqueta)
+admin.site.register(Post)
+admin.site.register(Comentario)

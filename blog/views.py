@@ -64,66 +64,47 @@ def etiquetas(request, etiqueta_id):
     return render(request, 'etiquetas.html', context)
 
 def crear_post(request):
-
-    if request.method == 'GET':
-            form = PostForm()
-
-
-    elif request.method == 'POST':
+    if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
-
             messages.success(request, 'Hemos recibido tus datos')
 
-            # Crea una instancia del modelo Post con los datos del formulario
-            
-            nNuevasEtiquetas =  int(request.POST.get('etiquetaNewCount'))
-            
+            nNuevasEtiquetas = int(request.POST.get('etiquetaNewCount'))
+            nuevasEtiquetas = []
+
             if nNuevasEtiquetas > 0:
-                nuevasEtiquetas = []
-                # Tenemos que revisar si las nuevas etiquetas estan o no..
                 for i in range(0, nNuevasEtiquetas):
-                     nuevaEtiqueta = request.POST.get('inewEtiqueta' + str(i + 1))
-                     newEtiqueta = Etiqueta.objects.filter(desc=nuevaEtiqueta)
-
-                     if not newEtiqueta:
-                        print(nuevaEtiqueta)
-                        newEtiqueta = Etiqueta(desc = nuevaEtiqueta)
-                        nuevasEtiquetas.append(newEtiqueta)
-                        newEtiqueta.save()
-                     else:
-                        nuevasEtiquetas.append(newEtiqueta.get())
-
+                    nuevaEtiqueta = request.POST.get('inewEtiqueta' + str(i + 1))
+                    newEtiqueta, created = Etiqueta.objects.get_or_create(desc=nuevaEtiqueta)
+                    nuevasEtiquetas.append(newEtiqueta)
 
             nuevo_post = Post(
                 titulo=form.cleaned_data['titulo'],
                 autor=form.cleaned_data['autor'],
                 contenido=form.cleaned_data['contenido']
             )
-            nuevo_post.save()  # Guarda el nuevo post en la base de datos
+            nuevo_post.save()
             nuevo_post.etiquetas.set(form.cleaned_data['etiquetas'])
-            form = PostForm()
 
             if nNuevasEtiquetas > 0:
-                for j in range(0, nNuevasEtiquetas):
-                    print(j)
-                    print(len(nuevasEtiquetas))
-                    nuevo_post.etiquetas.add(nuevasEtiquetas[j])
+                for nueva_etiqueta in nuevasEtiquetas:
+                    nuevo_post.etiquetas.add(nueva_etiqueta)
 
-            #return redirect('index')  # Redirige a la página de inicio después de crear la publicación
-        
-        else:    
+            return redirect('index')
+
+        else:
             messages.warning(request, 'Por favor revisa los errores en el formulario')
-
-
-
     else:
         form = PostForm()
 
+    etiquetas = Etiqueta.objects.all()  # Obtener todas las etiquetas
+
     context = {
         'form': form,
+        'etiquetas': etiquetas,
     }
     return render(request, 'crear_post.html', context)
+
 
 def convertirFecha(date):
     meses = ("Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre")
