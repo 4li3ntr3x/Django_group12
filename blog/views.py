@@ -8,6 +8,11 @@ from .models import Comentario, Etiqueta
 from datetime import date
 from datetime import datetime
 from django.shortcuts import render, get_object_or_404
+from django.contrib.auth import login,logout,authenticate
+from django.contrib.auth.models import User
+from django.db import IntegrityError
+from django.http import HttpResponseRedirect
+
 
 # Create your views here.
 
@@ -138,5 +143,53 @@ def post_detail(request, post_id):
     }
 
     return render(request, 'post_detail.html', context)
+
+"""def loginUser(request):
+    if not request.user.is_authenticated:
+        if request.method == "POST":
+            user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
+            if user is not None:
+                login(request, user)
+                messages.success(request, "Login correcto")
+                return redirect('home')
+            else:
+                messages.error(request, "password inválida")
+        return render(request, "login.html")
+    return redirect("home")"""
+
+def loginUser(request):
+    if request.method == "POST":
+        # Lógica de inicio de sesión
+        return redirect('home')  # Redirige al usuario a la página de inicio después del inicio de sesión exitoso
+
+    # Si la solicitud no es POST, simplemente muestra el formulario de inicio de sesión
+    return render(request, "login.html")
+
+def logoutUser(request):
+    logout(request)
+    messages.info(request, "desconectado del blog")
+    return redirect('login')
+
+
+def signup(request):
+    if request.method == 'POST':
+        username = request.POST.get("username")
+        email = request.POST.get("email")
+        password = request.POST.get("password")
+        password_c = request.POST.get("password-c")
+        if (password == password_c):
+            try:
+                user = User.objects.create_user(username, email, password);
+                user.save()
+                login(request, user)
+                messages.success(request, "Login correcto")
+                return redirect("home")
+            except IntegrityError:
+                messages.info(request, "prueba con un usuario diferente")
+                return render(request, "signup.html")
+        messages.error(request, "Password doesn't match Confirm Password")
+    if request.user.is_authenticated:
+        return redirect('home')
+    return render(request, "signup.html")
 
 

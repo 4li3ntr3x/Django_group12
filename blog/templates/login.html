@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block title %} 
+    Login 
+{% endblock title %}
+
+{% block contenido %}
+
+<div style="text-align: center;">
+    <div class="cred">
+      <h1>Login</h1>
+      <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <div class="input">
+          <input type="text" name="username" placeholder="Username" autocomplete="off" required/>
+        </div>
+        <div class="input">
+          <input type="password" name="password" placeholder="Password" autocomplete="off" required/>
+        </div>
+        <button type="submit" id="submit-btn">Login</button>
+      </form>
+      <div class="formfooter">
+        <p>Nuevo usuario? <a href="{% url 'signup' %}">Registrarse</a></p>
+        <p><a href="/reset/password_reset/">Password olvidada?</a></p>
+      </div>
+    </div>
+  </div>
+  
+{% endblock contenido %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

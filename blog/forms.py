@@ -1,6 +1,8 @@
 from django import forms
+from django.contrib.auth.forms import UserCreationForm
 from django.forms import ValidationError
 from .models import Post, Comentario, Etiqueta
+from django.contrib.auth.models import User
 
 
 class CustomMMCF(forms.ModelMultipleChoiceField):
@@ -38,5 +40,21 @@ class CommentForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['autor', 'email', 'contenido']
-    #name = forms.CharField(max_length=100, label='Tu nombre')
-    #body = forms.CharField(widget=forms.Textarea, label='Comentario')
+        
+class SignupForm(UserCreationForm):
+    email = forms.EmailField(max_length=100)
+
+    class Meta:
+        model = User
+        fields = ('username', 'password1', 'password2', 'email')
+
+
+class UserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = [
+            'username',  
+            'email', 
+        ]
+
+   

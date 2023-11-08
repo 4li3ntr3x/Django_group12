@@ -1,8 +1,11 @@
-from django.urls import path
+from django.urls import path, include
 from blog import views as blog_views
 from . import views
 
 urlpatterns = [
+   path('login/', views.loginUser, name='login'),
+   path('signup/', views.signup, name='signup'),
+   path('logout/', views.logoutUser, name='logout'),
    path('', blog_views.home, name='home'),
    path('index', blog_views.index, name='index'),  # Ruta para mostrar la lista de posts en la página de inicio
    path('somos/', blog_views.quienes_somos, name='somos'),
