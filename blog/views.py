@@ -10,6 +10,7 @@ from datetime import datetime
 from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login,logout,authenticate
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
 
@@ -68,6 +69,7 @@ def etiquetas(request, etiqueta_id):
     }
     return render(request, 'etiquetas.html', context)
 
+@login_required
 def crear_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -158,17 +160,29 @@ def post_detail(request, post_id):
     return redirect("home")"""
 
 def loginUser(request):
-    if request.method == "POST":
+    if request.method == 'POST':
+        # AuthenticationForm_can_also_be_used__
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            form = login(request, user)
+            messages.success(request, f' Bienvenido/a {username} !!')
+            #return redirect('home')  # Redirige al usuario a la página de inicio después del inicio de sesión exitoso
+            return redirect('home')
+        else:
+            messages.error(request, f'Cuenta o password incorrecto, realice el login correctamente')
+            #return render(request, "login.html")
         # Lógica de inicio de sesión
-        return redirect('home')  # Redirige al usuario a la página de inicio después del inicio de sesión exitoso
+       
 
     # Si la solicitud no es POST, simplemente muestra el formulario de inicio de sesión
     return render(request, "login.html")
 
 def logoutUser(request):
     logout(request)
-    messages.info(request, "desconectado del blog")
-    return redirect('login')
+    #messages.info(request, "desconectado del blog")
+    return redirect('home')
 
 
 def signup(request):
