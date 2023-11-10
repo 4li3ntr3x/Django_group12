@@ -24,7 +24,7 @@ def home(request):
     context = {
             'home': home,
             'lastPosts':ultimos_post
-        }
+            }
     return render(request, 'homepage.html', context)
 
 def index(request):
@@ -69,7 +69,7 @@ def etiquetas(request, etiqueta_id):
     }
     return render(request, 'etiquetas.html', context)
 
-@login_required
+@login_required(login_url='/login/')
 def crear_post(request):
     if request.method == 'POST':
         form = PostForm(request.POST)
@@ -87,7 +87,8 @@ def crear_post(request):
 
             nuevo_post = Post(
                 titulo=form.cleaned_data['titulo'],
-                autor=form.cleaned_data['autor'],
+                #autor=form.cleaned_data['autor'],
+                autor=request.user.username,
                 contenido=form.cleaned_data['contenido']
             )
             nuevo_post.save()

@@ -12,7 +12,7 @@ class CustomMMCF(forms.ModelMultipleChoiceField):
 class PostForm(forms.ModelForm):
     class Meta:
         model = Post
-        fields = ['titulo', 'autor', 'contenido', 'etiquetas']
+        fields = ['titulo', 'contenido', 'etiquetas']
        
 
     etiquetas = CustomMMCF(
@@ -26,11 +26,11 @@ class PostForm(forms.ModelForm):
                 "El mensaje debe contener mas de 20 caracteres")
         return data
     
-    def clean_autor(self):
-        data = self.cleaned_data['autor']
-        if any(char.isdigit() for char in data):
-            raise ValidationError("El autor no puede contener números.")
-        return data
+    #def clean_autor(self):
+    #    data = self.cleaned_data['autor']
+    #    if any(char.isdigit() for char in data):
+    #        raise ValidationError("El autor no puede contener números.")
+    #    return data
 
     
 

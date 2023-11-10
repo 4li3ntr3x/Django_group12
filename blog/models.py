@@ -2,7 +2,8 @@ from django.db import models
 
 class Etiqueta(models.Model):
     desc = models.CharField(max_length=50)
-
+    def __str__(self) -> str:
+        return f'{self.id} - {self.desc}'
 class Post(models.Model):
     titulo = models.CharField(max_length=100)
     autor = models.CharField(max_length=50)
@@ -12,7 +13,8 @@ class Post(models.Model):
 
     def obtener_ultimos_x(cantidad):
         return Post.objects.order_by("-fecha", "-id").all()[:cantidad]
-
+    def __str__(self) -> str:
+        return f'{self.id} - Autor: {self.autor} - Título: {self.titulo}'
 class Comentario(models.Model):
     autor = models.CharField(max_length=50)
     email = models.EmailField(max_length=150, verbose_name="Email", null=True)

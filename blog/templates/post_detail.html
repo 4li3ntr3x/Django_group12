@@ -35,6 +35,7 @@
     <div class="post-detail">
         <h2>{{ post.titulo }}</h2>
         <p>{{ post.contenido | safe }}</p>
+        <p class='autorpost'>Autor: {{ post.autor }}</p>
         <p> Etiquetas:
             {%for e in etiquetas %}
               {%if forloop.counter > 1 %} - {% endif %}
