@@ -8,6 +8,24 @@
     color: cadetblue;
 
 }
+.autorpost
+{
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-style:italic;
+}
+.userspan
+{
+  color:black;
+  font-weight: bold;
+  padding: 5px;
+}
+.usernamespan
+{
+  padding: 5px;
+  color: rgb(5, 105, 103);
+  font-weight: bold;
+}
 .blogPost
 {
     background-color: rgb(236, 234, 244);
