@@ -147,19 +147,6 @@ def post_detail(request, post_id):
 
     return render(request, 'post_detail.html', context)
 
-"""def loginUser(request):
-    if not request.user.is_authenticated:
-        if request.method == "POST":
-            user = authenticate(username=request.POST.get("username"), password=request.POST.get("password"))
-            if user is not None:
-                login(request, user)
-                messages.success(request, "Login correcto")
-                return redirect('home')
-            else:
-                messages.error(request, "password inválida")
-        return render(request, "login.html")
-    return redirect("home")"""
-
 def loginUser(request):
     if request.method == 'POST':
         # AuthenticationForm_can_also_be_used__
@@ -202,7 +189,7 @@ def signup(request):
             except IntegrityError:
                 messages.info(request, "prueba con un usuario diferente")
                 return render(request, "signup.html")
-        messages.error(request, "Password doesn't match Confirm Password")
+        messages.error(request, "Password no coincide confirma la Password")
     if request.user.is_authenticated:
         return redirect('home')
     return render(request, "signup.html")
