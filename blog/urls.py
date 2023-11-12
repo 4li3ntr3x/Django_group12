@@ -14,5 +14,6 @@ urlpatterns = [
    path('perfil/<str:nombre>', blog_views.perfil, name='perfil'),
    path('crear_post/', blog_views.crear_post, name='crear_post'),
    path('post/<int:post_id>/', views.post_detail, name='post_detail'),# Ruta para entran en detalle al post
-   path('etiquetas/<int:etiqueta_id>/', views.etiquetas, name='etiquetas')
+   path('etiquetas/<int:etiqueta_id>/', views.etiquetas, name='etiquetas'),
+   path('buscar/', views.BuscarResultado.as_view(), name='Buscar')
 ]

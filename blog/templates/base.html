@@ -45,8 +45,8 @@
 
                     </ul>
 
-                    <form class="d-flex">
-                        <input class="form-control me-2" type="search" placeholder="Posts..." aria-label="Search">
+                    <form class="d-flex" role="search" action="{% url 'Buscar' %}" method="get">
+                        <input class="form-control me-2" type="search" placeholder="Posts..." aria-label="Search" name="Buscar">
                         <button class="btn btn-outline-success" type="submit">Buscar</button>
                     </form>
 

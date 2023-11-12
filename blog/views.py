@@ -13,6 +13,8 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.db import IntegrityError
 from django.http import HttpResponseRedirect
+from django.views import generic
+from django.db.models import Q
 
 
 # Create your views here.
@@ -28,6 +30,7 @@ def home(request):
     return render(request, 'homepage.html', context)
 
 def index(request):
+
     posts = Post.objects.all()
     context = {
         'posts': posts
@@ -194,4 +197,17 @@ def signup(request):
         return redirect('home')
     return render(request, "signup.html")
 
+
+class BuscarResultado(generic.ListView):
+
+    model = Post
+    template_name = "buscar.html"
+
+    def get_queryset(self):
+
+        query = self.request.GET.get('Buscar')
+      
+        post_list = Post.objects.filter(
+            Q(titulo__icontains=query)).distinct()
+        return post_list
 
